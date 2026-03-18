@@ -296,26 +296,125 @@ h1, h2, h3, h4, h5, h6 {
 
 ::selection { background: rgba(74, 143, 255, 0.2); color: var(--text-primary); }
 
+/* ─────────────────────────────────────────────
+   NAMED LAYOUT CLASSES (targeted by media query)
+───────────────────────────────────────────── */
+.hero-layout          { display: grid; grid-template-columns: 1fr 340px; gap: 60px; align-items: center; }
+.hero-aside-col       { opacity: 0; }
+
+.section-header-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; }
+
+.stats-grid           { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+                        border-top: 1px solid var(--border-subtle);
+                        border-bottom: 1px solid var(--border-subtle); }
+.stat-card            { padding: 56px 40px; opacity: 0; }
+
+.about-grid           { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+.about-feat-grid      { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.products-header-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+                         margin-bottom: 80px; align-items: end; }
+.products-bento       { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.product-card-span    { grid-column: span 2; }
+
+.mfg-grid             { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: start; }
+
+.rd-header-split      { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; }
+.rd-cards-grid        { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+.exp-header-split     { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; }
+.exp-stats-grid       { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+.regions-grid         { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+.footer-grid          { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 48px; margin-bottom: 80px; }
+
 /* ── Responsive ── */
+/* Tablet */
 @media (max-width: 1024px) {
-  .bento-grid { grid-template-columns: repeat(6, 1fr); }
+  .hero-layout          { grid-template-columns: 1fr 280px; gap: 40px; }
+  .stats-grid           { grid-template-columns: repeat(2, 1fr); }
+  .stat-card            { padding: 40px 28px; }
+  .stat-card:nth-child(2) { border-right: none; }
+  .products-bento       { grid-template-columns: repeat(2, 1fr); }
+  .product-card-span    { grid-column: span 1; }
+  .rd-cards-grid        { grid-template-columns: 1fr 1fr; }
+  .exp-stats-grid       { grid-template-columns: repeat(2, 1fr); }
+  .regions-grid         { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid          { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
-  .section-padding { padding: 80px 0; }
-  .container-max { padding: 0 20px; }
-  .about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-  .mfg-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
-  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
-  .desktop-nav { display: none !important; }
-  .mobile-menu-btn { display: block !important; }
-  .stat-card { padding: 32px 0 !important; }
-  .bento-grid { grid-template-columns: 1fr 1fr !important; }
-  h1 { margin-bottom: 24px !important; }
-  h2 { margin-bottom: 16px !important; }
+  .section-padding      { padding: 72px 0; }
+  .container-max        { padding: 0 18px; }
+
+  /* Nav */
+  .desktop-nav          { display: none !important; }
+  .mobile-menu-btn      { display: flex !important; }
+
+  /* Hero */
+  .hero-layout          { grid-template-columns: 1fr; gap: 0; }
+  .hero-aside-col       { display: none !important; }
+
+  /* Section header splits → stack */
+  .section-header-split,
+  .products-header-split,
+  .rd-header-split,
+  .exp-header-split     { grid-template-columns: 1fr; gap: 16px; margin-bottom: 48px; }
+
+  /* Stats */
+  .stats-grid           { grid-template-columns: repeat(2, 1fr); }
+  .stat-card            { padding: 32px 20px; border-right: none !important;
+                          border-bottom: 1px solid var(--border-subtle); }
+  .stat-card:nth-last-child(-n+2) { border-bottom: none; }
+
+  /* About */
+  .about-grid           { grid-template-columns: 1fr; gap: 40px; }
+  .about-feat-grid      { grid-template-columns: 1fr 1fr; gap: 10px; }
+  /* Remove stagger offset on mobile */
+  .about-feat-offset    { margin-top: 0 !important; }
+
+  /* Products bento → 1 col, no span */
+  .products-bento       { grid-template-columns: 1fr; }
+  .product-card-span    { grid-column: span 1; }
+
+  /* Mfg */
+  .mfg-grid             { grid-template-columns: 1fr; }
+
+  /* R&D */
+  .rd-cards-grid        { grid-template-columns: 1fr; }
+
+  /* Exports */
+  .exp-stats-grid       { grid-template-columns: repeat(2, 1fr); }
+  .regions-grid         { grid-template-columns: 1fr 1fr; }
+
+  /* Footer */
+  .footer-grid          { grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+
+  /* Typography */
+  h1                    { margin-bottom: 20px !important; }
+  h2                    { margin-bottom: 12px !important; }
+
+  /* Buttons — full-width on very small screens handled below */
+  .btn-primary,
+  .btn-outline          { padding: 14px 28px; font-size: 12px; }
 }
 
+/* Small mobile */
 @media (max-width: 480px) {
-  .footer-grid { grid-template-columns: 1fr !important; }
-  .bento-grid { grid-template-columns: 1fr !important; }
+  .container-max        { padding: 0 16px; }
+  .section-padding      { padding: 56px 0; }
+
+  .stats-grid           { grid-template-columns: 1fr 1fr; }
+  .about-feat-grid      { grid-template-columns: 1fr; }
+  .exp-stats-grid       { grid-template-columns: 1fr 1fr; }
+  .regions-grid         { grid-template-columns: 1fr; }
+  .footer-grid          { grid-template-columns: 1fr; }
+
+  /* Hero title clamp floor */
+  .hero-title-word      { font-size: 48px !important; }
+
+  /* CTA buttons stack */
+  .cta-btn-row          { flex-direction: column; align-items: stretch; }
+  .cta-btn-row button   { width: 100%; justify-content: center; }
 }

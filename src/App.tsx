@@ -137,7 +137,7 @@ function Navbar() {
         transform: navVisible ? 'translateY(0)' : 'translateY(-100%)',
         opacity: 0,
       }}>
-        <div style={{ maxWidth: 1360, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ maxWidth: 1360, margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           {/* Logo */}
           <a href="/" className="card-hover" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
             <div style={{
@@ -175,7 +175,7 @@ function Navbar() {
 
           {/* Mobile Burger */}
           <button onClick={() => setMobileOpen(!mobileOpen)} className="mobile-menu-btn"
-            style={{ display: 'none', background: 'none', border: 'none', cursor: 'none', padding: 8, flexDirection: 'column', gap: 5 }}>
+            style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 8, flexDirection: 'column', gap: 5, minWidth: 44, minHeight: 44, justifyContent: 'center', alignItems: 'center' }}>
             <div style={{ width: 22, height: 1.5, background: 'var(--text-primary)', transition: 'all 0.3s ease', transform: mobileOpen ? 'rotate(45deg) translate(4.5px, 4.5px)' : 'none' }} />
             <div style={{ width: 22, height: 1.5, background: 'var(--text-primary)', transition: 'all 0.3s ease', opacity: mobileOpen ? 0 : 1 }} />
             <div style={{ width: 22, height: 1.5, background: 'var(--text-primary)', transition: 'all 0.3s ease', transform: mobileOpen ? 'rotate(-45deg) translate(4.5px, -4.5px)' : 'none' }} />
@@ -245,7 +245,7 @@ function HeroSection() {
     }}>
       <div className="container-max" style={{ position: 'relative', zIndex: 10, width: '100%' }}>
         {/* Asymmetric split: left content + right aside */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 60, alignItems: 'center' }}>
+        <div className="hero-layout">
 
           {/* Left: Main content */}
           <div>
@@ -307,7 +307,7 @@ function HeroSection() {
           </div>
 
           {/* Right: Floating stats card */}
-          <div className="hero-aside" style={{ opacity: 0 }}>
+          <div className="hero-aside hero-aside-col">
             <div className="glass" style={{
               borderRadius: 16, padding: '36px 28px',
               display: 'flex', flexDirection: 'column', gap: 28,
@@ -390,16 +390,10 @@ function StatsSection() {
   return (
     <section ref={statsRef} className="section-padding" style={{ position: 'relative' }}>
       <div className="container-max">
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0,
-          borderTop: '1px solid var(--border-subtle)',
-          borderBottom: '1px solid var(--border-subtle)',
-        }}>
+        <div className="stats-grid">
           {stats.map((stat, i) => (
             <div key={i} className="stat-card" style={{
-              padding: '56px 40px',
               borderRight: i < stats.length - 1 ? '1px solid var(--border-subtle)' : 'none',
-              opacity: 0,
             }}>
               <div style={{
                 fontFamily: 'var(--font-display)', fontSize: 60, fontWeight: 600,
@@ -441,7 +435,7 @@ function AboutSection() {
   return (
     <section ref={aboutRef} id="about" className="section-padding" style={{ position: 'relative' }}>
       <div className="container-max">
-        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 100, alignItems: 'start' }}>
+        <div className="about-grid">
           <div>
             <div className="about-overline overline" style={{ marginBottom: 36, opacity: 0 }}>
               About PIL India
@@ -465,9 +459,9 @@ function AboutSection() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <div className="about-feat-grid">
             {features.map((f, i) => (
-              <div key={i} className="about-feat glass card-hover" style={{
+              <div key={i} className={`about-feat glass card-hover${i % 2 === 1 ? ' about-feat-offset' : ''}`} style={{
                 padding: '32px 24px', borderRadius: 'var(--radius-lg)', opacity: 0,
                 marginTop: i % 2 === 1 ? 28 : 0,
               }}>
@@ -511,7 +505,7 @@ function ProductsSection() {
     <section ref={productsRef} id="products" className="section-padding" style={{ position: 'relative' }}>
       <div className="container-max">
         {/* Header – left-aligned */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, marginBottom: 80, alignItems: 'end' }}>
+        <div className="products-header-split">
           <div>
             <div className="prod-overline overline" style={{ marginBottom: 28, opacity: 0 }}>Product Categories</div>
             <h2 className="prod-h2" style={{
@@ -529,14 +523,13 @@ function ProductsSection() {
         </div>
 
         {/* Bento grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+        <div className="products-bento">
           {categories.map((cat, i) => (
-            <div key={i} className="product-card glass card-hover" style={{
+            <div key={i} className={`product-card glass card-hover${cat.size === 'large' ? ' product-card-span' : ''}`} style={{
               padding: cat.size === 'large' ? '44px 36px' : '32px 28px',
               borderRadius: 'var(--radius-lg)', opacity: 0,
               display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
               flexDirection: 'column', gap: 32,
-              gridColumn: cat.size === 'large' ? 'span 2' : 'span 1',
               minHeight: cat.size === 'large' ? 180 : 160,
             }}>
               <div>
@@ -583,7 +576,7 @@ function ManufacturingSection() {
       <div className="container-max">
         <div className="mfg-header" style={{ marginBottom: 80 }}>
           <div className="overline" style={{ marginBottom: 28, opacity: 0 }}>Manufacturing Excellence</div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'end' }}>
+          <div className="section-header-split">
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 600, letterSpacing: '-0.04em', lineHeight: 1.1, opacity: 0 }}>
               World-Class<br /><span className="gradient-text-alt">Production</span>
             </h2>
@@ -593,7 +586,7 @@ function ManufacturingSection() {
           </div>
         </div>
 
-        <div className="mfg-grid" style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 40, alignItems: 'start' }}>
+        <div className="mfg-grid">
           {/* Left panel */}
           <div className="mfg-panel glass" style={{
             borderRadius: 'var(--radius-xl)', padding: '60px 48px',
@@ -661,7 +654,7 @@ function RDSection() {
       <div className="container-max">
         <div className="rd-header" style={{ marginBottom: 80 }}>
           <div className="overline" style={{ marginBottom: 28, opacity: 0 }}>Research & Development</div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'end' }}>
+          <div className="rd-header-split">
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 600, letterSpacing: '-0.04em', lineHeight: 1.1, opacity: 0 }}>
               Innovation at<br /><span className="gradient-text-alt">Molecular Level</span>
             </h2>
@@ -671,7 +664,7 @@ function RDSection() {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+        <div className="rd-cards-grid">
           {rdItems.map((item, i) => (
             <div key={i} className="rd-card glass card-hover" style={{
               padding: '44px 36px', borderRadius: 'var(--radius-lg)',
@@ -721,7 +714,7 @@ function ExportsSection() {
       <div className="container-max">
         <div className="exp-header" style={{ marginBottom: 80 }}>
           <div className="overline" style={{ marginBottom: 28, opacity: 0 }}>Global Footprint</div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'end' }}>
+          <div className="exp-header-split">
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 600, letterSpacing: '-0.04em', lineHeight: 1.1, opacity: 0 }}>
               Healing Lives<br /><span className="gradient-text-alt">Across Borders</span>
             </h2>
@@ -732,7 +725,7 @@ function ExportsSection() {
         </div>
 
         {/* Stats row */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 40 }}>
+        <div className="exp-stats-grid">
           {[
             { val: '50+', label: 'Countries' },
             { val: '200+', label: 'Global Partners' },
@@ -749,7 +742,7 @@ function ExportsSection() {
         </div>
 
         {/* Regions */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+        <div className="regions-grid">
           {regions.map((r, i) => (
             <div key={i} className="region-card glass card-hover" style={{
               padding: '20px 24px', borderRadius: 'var(--radius-lg)',
@@ -805,7 +798,7 @@ function CTASection() {
               Whether you're looking for contract manufacturing, distribution partnerships,
               or product inquiries — let's create healthier futures together.
             </p>
-            <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div className="cta-btn-row" style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
               <button className="btn-primary"><span>Contact Us</span></button>
               <button className="btn-outline"><span>Download Brochure</span></button>
             </div>
@@ -828,7 +821,7 @@ function Footer() {
   return (
     <footer style={{ position: 'relative', paddingTop: 100, paddingBottom: 40, borderTop: '1px solid var(--border-glass)' }}>
       <div className="container-max">
-        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '1.5fr repeat(4, 1fr)', gap: 48, marginBottom: 80 }}>
+        <div className="footer-grid">
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
               <div style={{
