@@ -819,7 +819,7 @@ function Footer() {
   };
 
   return (
-    <footer style={{ position: 'relative', paddingTop: 100, paddingBottom: 40, borderTop: '1px solid var(--border-glass)' }}>
+    <footer style={{ position: 'relative', paddingTop: 100, paddingBottom: 40, borderTop: '1px solid var(--border-glass)', background: 'rgba(5, 10, 20, 0.65)', backdropFilter: 'blur(24px) saturate(1.5)', WebkitBackdropFilter: 'blur(24px) saturate(1.5)' }}>
       <div className="container-max">
         <div className="footer-grid">
           <div>
