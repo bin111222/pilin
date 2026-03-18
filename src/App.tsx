@@ -783,6 +783,9 @@ function CTASection() {
         <div className="glass" style={{
           position: 'relative', borderRadius: 24, padding: 'clamp(64px, 8vw, 100px) clamp(48px, 6vw, 80px)',
           overflow: 'hidden',
+          background: 'rgba(5, 10, 20, 0.15)',
+          backdropFilter: 'blur(8px) saturate(1.2)',
+          WebkitBackdropFilter: 'blur(8px) saturate(1.2)'
         }}>
           {/* Top accent line */}
           <div style={{ position: 'absolute', top: 0, left: '10%', right: '10%', height: 1, background: 'linear-gradient(to right, transparent, rgba(74,143,255,0.4), transparent)' }} />
