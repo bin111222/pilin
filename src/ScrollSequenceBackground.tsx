@@ -8,7 +8,7 @@ const FRAME_COUNT = 459;
 
 function getFramePath(index: number): string {
     const num = String(index + 1).padStart(3, '0');
-    return `/seq1/home_${num}.jpg`;
+    return `https://ik.imagekit.io/jaishreeskinfinitii/pilin/public/seq1/home_${num}.jpg`;
 }
 
 export default function ScrollSequenceBackground() {
@@ -48,8 +48,14 @@ export default function ScrollSequenceBackground() {
 
         function handleResize() {
             if (!canvas) return;
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            const dpr = window.devicePixelRatio || 1;
+            // Set actual internal canvas resolution
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+            // Set CSS display size
+            canvas.style.width = `${window.innerWidth}px`;
+            canvas.style.height = `${window.innerHeight}px`;
+            
             renderFrame(frameIndexRef.current.value);
         }
 
