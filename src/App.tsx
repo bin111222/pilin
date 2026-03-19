@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
 import ScrollSequenceBackground from './ScrollSequenceBackground';
+import { ArrowRight, Play, TestTube, Microscope, HeartPulse, Pill, Syringe, Brain, Activity, Droplet, Globe2, MapPin, Linkedin, Twitter, Instagram, Youtube, Phone, ArrowUpRight, Award, ShieldCheck, Beaker, Handshake } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -168,8 +169,9 @@ function Navbar() {
                 {link.label}
               </a>
             ))}
-            <button className="btn-outline" style={{ padding: '8px 20px', fontSize: 11 }}>
+            <button className="btn-outline" style={{ padding: '8px 20px', fontSize: 11, display: 'flex', alignItems: 'center', gap: 6 }}>
               <span>Get in Touch</span>
+              <ArrowRight size={14} />
             </button>
           </div>
 
@@ -297,10 +299,12 @@ function HeroSection() {
             </p>
 
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-              <button className="btn-primary hero-cta" style={{ opacity: 0 }}>
+              <button className="btn-primary hero-cta" style={{ opacity: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span>Explore Products</span>
+                <ArrowRight size={16} />
               </button>
-              <button className="btn-outline hero-cta" style={{ opacity: 0 }}>
+              <button className="btn-outline hero-cta" style={{ opacity: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Play size={16} />
                 <span>Our Story</span>
               </button>
             </div>
@@ -353,10 +357,10 @@ function MarqueeSection() {
 function StatsSection() {
   const statsRef = useRef<HTMLDivElement>(null);
   const stats = [
-    { value: '500+', label: 'Formulations', sub: 'Across 20+ therapeutic categories' },
-    { value: '50+', label: 'Countries Served', sub: 'With regulatory approvals' },
-    { value: '40+', label: 'Years of Trust', sub: 'Since 1983' },
-    { value: '2000+', label: 'Team Members', sub: 'Dedicated professionals' },
+    { value: '500+', label: 'Formulations', sub: 'Across 20+ therapeutic categories', icon: <Pill size={32} /> },
+    { value: '50+', label: 'Countries Served', sub: 'With regulatory approvals', icon: <Globe2 size={32} /> },
+    { value: '40+', label: 'Years of Trust', sub: 'Since 1983', icon: <Award size={32} /> },
+    { value: '2000+', label: 'Team Members', sub: 'Dedicated professionals', icon: <Handshake size={32} /> },
   ];
 
   useEffect(() => {
@@ -376,7 +380,9 @@ function StatsSection() {
           {stats.map((stat, i) => (
             <div key={i} className="stat-card" style={{
               borderRight: i < stats.length - 1 ? '1px solid var(--border-subtle)' : 'none',
+              paddingLeft: i > 0 ? 32 : 0,
             }}>
+              <div style={{ color: 'var(--text-secondary)', marginBottom: 20 }}>{stat.icon}</div>
               <div style={{
                 fontFamily: 'var(--font-display)', fontSize: 60, fontWeight: 600,
                 letterSpacing: '-0.05em', lineHeight: 1, marginBottom: 12,
@@ -396,10 +402,10 @@ function StatsSection() {
 function AboutSection() {
   const aboutRef = useRef<HTMLDivElement>(null);
   const features = [
-    { title: 'DSIR Recognized R&D', desc: 'Government-recognized research center driving pharmaceutical innovation' },
-    { title: 'WHO-GMP Facilities', desc: 'State-of-the-art manufacturing across multiple certified plants' },
-    { title: 'Global Presence', desc: 'Exporting to 50+ countries with regulatory approvals worldwide' },
-    { title: '500+ Formulations', desc: 'Comprehensive portfolio spanning 20+ therapeutic categories' },
+    { title: 'DSIR Recognized R&D', desc: 'Government-recognized research center driving pharmaceutical innovation', icon: <Microscope size={24} /> },
+    { title: 'WHO-GMP Facilities', desc: 'State-of-the-art manufacturing across multiple certified plants', icon: <ShieldCheck size={24} /> },
+    { title: 'Global Presence', desc: 'Exporting to 50+ countries with regulatory approvals worldwide', icon: <Globe2 size={24} /> },
+    { title: '500+ Formulations', desc: 'Comprehensive portfolio spanning 20+ therapeutic categories', icon: <Pill size={24} /> },
   ];
 
   useEffect(() => {
@@ -447,7 +453,10 @@ function AboutSection() {
                 padding: '32px 24px', borderRadius: 'var(--radius-lg)', opacity: 0,
                 marginTop: i % 2 === 1 ? 28 : 0,
               }}>
-                <div style={{ width: 20, height: 1, background: 'rgba(74,143,255,0.6)', marginBottom: 20 }} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
+                  <div style={{ color: 'var(--text-secondary)' }}>{f.icon}</div>
+                  <div style={{ height: 1, flex: 1, background: 'rgba(74,143,255,0.2)' }} />
+                </div>
                 <h4 style={{ fontSize: 14, fontWeight: 600, marginBottom: 10, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>{f.title}</h4>
                 <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--text-muted)', fontWeight: 300 }}>{f.desc}</p>
               </div>
@@ -463,12 +472,12 @@ function AboutSection() {
 function ProductsSection() {
   const productsRef = useRef<HTMLDivElement>(null);
   const categories = [
-    { name: 'Anti-Diabetic', count: '45+ SKUs', size: 'large' },
-    { name: 'Cardiology', count: '38+ SKUs', size: 'small' },
-    { name: 'Neurology', count: '32+ SKUs', size: 'small' },
-    { name: 'Antibiotics', count: '55+ SKUs', size: 'large' },
-    { name: 'Nutraceuticals', count: '28+ SKUs', size: 'small' },
-    { name: 'Gastroenterology', count: '22+ SKUs', size: 'small' },
+    { name: 'Anti-Diabetic', count: '45+ SKUs', size: 'large', icon: <Activity size={24} /> },
+    { name: 'Cardiology', count: '38+ SKUs', size: 'small', icon: <HeartPulse size={24} /> },
+    { name: 'Neurology', count: '32+ SKUs', size: 'small', icon: <Brain size={24} /> },
+    { name: 'Antibiotics', count: '55+ SKUs', size: 'large', icon: <Pill size={24} /> },
+    { name: 'Nutraceuticals', count: '28+ SKUs', size: 'small', icon: <Beaker size={24} /> },
+    { name: 'Gastroenterology', count: '22+ SKUs', size: 'small', icon: <Activity size={24} /> },
   ];
 
   useEffect(() => {
@@ -514,13 +523,14 @@ function ProductsSection() {
               flexDirection: 'column', gap: 32,
               minHeight: cat.size === 'large' ? 180 : 160,
             }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                <div style={{ color: 'var(--text-secondary)' }}>{cat.icon}</div>
+                <ArrowUpRight size={18} color="var(--text-muted)" />
+              </div>
               <div>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: cat.size === 'large' ? 22 : 17, fontWeight: 500, marginBottom: 8, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>{cat.name}</h3>
                 <p style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{cat.count}</p>
               </div>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
             </div>
           ))}
         </div>
@@ -537,10 +547,10 @@ function ProductsSection() {
 function ManufacturingSection() {
   const mfgRef = useRef<HTMLDivElement>(null);
   const capabilities = [
-    { title: 'Tablets', desc: 'High-speed rotary press lines with coating systems' },
-    { title: 'Capsules', desc: 'Automated encapsulation with precision filling' },
-    { title: 'Injectables', desc: 'Aseptic processing in ISO Class 5 cleanrooms' },
-    { title: 'Liquids & Syrups', desc: 'High-volume liquid oral filling lines' },
+    { title: 'Tablets', desc: 'High-speed rotary press lines with coating systems', icon: <Pill size={24} /> },
+    { title: 'Capsules', desc: 'Automated encapsulation with precision filling', icon: <Pill size={24} /> },
+    { title: 'Injectables', desc: 'Aseptic processing in ISO Class 5 cleanrooms', icon: <Syringe size={24} /> },
+    { title: 'Liquids & Syrups', desc: 'High-volume liquid oral filling lines', icon: <Droplet size={24} /> },
   ];
 
   useEffect(() => {
@@ -599,6 +609,7 @@ function ManufacturingSection() {
                 padding: '24px 28px', borderRadius: 'var(--radius-lg)',
                 display: 'flex', alignItems: 'center', gap: 20, opacity: 0,
               }}>
+                <div style={{ color: 'var(--accent-primary)' }}>{cap.icon}</div>
                 <div style={{ width: 1, alignSelf: 'stretch', background: 'rgba(74,143,255,0.3)', flexShrink: 0 }} />
                 <div>
                   <h4 style={{ fontSize: 14, fontWeight: 600, marginBottom: 5, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>{cap.title}</h4>
@@ -617,9 +628,9 @@ function ManufacturingSection() {
 function RDSection() {
   const rdRef = useRef<HTMLDivElement>(null);
   const rdItems = [
-    { title: 'DSIR Recognized Lab', desc: 'Our R&D lab is recognized by the Department of Scientific and Industrial Research, Government of India.' },
-    { title: 'Novel Drug Delivery', desc: 'Developing extended-release, sustained-release, and targeted drug delivery systems for enhanced efficacy.' },
-    { title: 'Analytical Excellence', desc: 'State-of-the-art HPLC, GC, dissolution, and stability testing equipment ensuring pharmaceutical precision.' },
+    { title: 'DSIR Recognized Lab', desc: 'Our R&D lab is recognized by the Department of Scientific and Industrial Research, Government of India.', icon: <Microscope size={24} /> },
+    { title: 'Novel Drug Delivery', desc: 'Developing extended-release, sustained-release, and targeted drug delivery systems for enhanced efficacy.', icon: <TestTube size={24} /> },
+    { title: 'Analytical Excellence', desc: 'State-of-the-art HPLC, GC, dissolution, and stability testing equipment ensuring pharmaceutical precision.', icon: <Activity size={24} /> },
   ];
 
   useEffect(() => {
@@ -659,7 +670,10 @@ function RDSection() {
                   0{i + 1}
                 </span>
               </div>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 600, marginBottom: 14, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>{item.title}</h3>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 600, marginBottom: 14, color: 'var(--text-primary)', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: 10 }}>
+                <span style={{ color: 'var(--accent-primary)' }}>{item.icon}</span>
+                {item.title}
+              </h3>
               <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--text-muted)', fontWeight: 300 }}>{item.desc}</p>
             </div>
           ))}
@@ -734,9 +748,7 @@ function ExportsSection() {
                 <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 3, letterSpacing: '-0.01em' }}>{r.name}</h4>
                 <p style={{ fontSize: 12, color: 'var(--text-muted)' }}>{r.countries}</p>
               </div>
-              <svg style={{ marginLeft: 'auto', flexShrink: 0 }} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+              <MapPin style={{ marginLeft: 'auto', flexShrink: 0 }} size={16} color="var(--text-muted)" />
             </div>
           ))}
         </div>
@@ -784,8 +796,14 @@ function CTASection() {
               or product inquiries — let's create healthier futures together.
             </p>
             <div className="cta-btn-row" style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <button className="btn-primary"><span>Contact Us</span></button>
-              <button className="btn-outline"><span>Download Brochure</span></button>
+              <button className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span>Contact Us</span>
+                <ArrowRight size={16} />
+              </button>
+              <button className="btn-outline" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Phone size={16} />
+                <span>Call Now</span>
+              </button>
             </div>
           </div>
         </div>
@@ -823,17 +841,38 @@ function Footer() {
               Pioneering pharmaceutical excellence since 1983. Quality healthcare to 50+ countries.
             </p>
             <div style={{ display: 'flex', gap: 10 }}>
-              {['IN', 'TW', 'LI'].map((s, i) => (
-                <a key={i} href="#" className="card-hover" style={{
+              <a href="#" className="card-hover" style={{
                   width: 34, height: 34, borderRadius: 4,
                   border: '1px solid var(--border-glass)',
                   background: 'rgba(240,244,255,0.03)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: 'var(--text-muted)', fontSize: 10, fontWeight: 600, textDecoration: 'none',
-                  fontFamily: 'var(--font-display)', transition: 'all 0.3s ease',
+                  color: 'var(--text-muted)', transition: 'all 0.3s ease',
                   boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
-                }}>{s}</a>
-              ))}
+                }}><Linkedin size={16} /></a>
+              <a href="#" className="card-hover" style={{
+                  width: 34, height: 34, borderRadius: 4,
+                  border: '1px solid var(--border-glass)',
+                  background: 'rgba(240,244,255,0.03)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: 'var(--text-muted)', transition: 'all 0.3s ease',
+                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
+                }}><Twitter size={16} /></a>
+              <a href="#" className="card-hover" style={{
+                  width: 34, height: 34, borderRadius: 4,
+                  border: '1px solid var(--border-glass)',
+                  background: 'rgba(240,244,255,0.03)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: 'var(--text-muted)', transition: 'all 0.3s ease',
+                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
+                }}><Instagram size={16} /></a>
+              <a href="#" className="card-hover" style={{
+                  width: 34, height: 34, borderRadius: 4,
+                  border: '1px solid var(--border-glass)',
+                  background: 'rgba(240,244,255,0.03)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: 'var(--text-muted)', transition: 'all 0.3s ease',
+                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
+                }}><Youtube size={16} /></a>
             </div>
           </div>
           {Object.entries(footerLinks).map(([title, links]) => (
