@@ -7,9 +7,9 @@
   --bg-card: rgba(10, 18, 36, 0.7);
   --bg-glass: rgba(5, 10, 20, 0.45);
 
-  --text-primary: #F0F4FF;
-  --text-secondary: #A8B8D8;
-  --text-muted: #5A7299;
+  --text-primary: #FFFFFF;
+  --text-secondary: #D4E2FA;
+  --text-muted: #8CA6D9;
 
   /* Single accent – Electric Slate Blue (not purple, not neon) */
   --accent-primary: #4A8FFF;

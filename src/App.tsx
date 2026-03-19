@@ -306,26 +306,8 @@ function HeroSection() {
             </div>
           </div>
 
-          {/* Right: Floating stats card */}
+          {/* Right: Scroll Indicator */}
           <div className="hero-aside hero-aside-col">
-            <div className="glass" style={{
-              borderRadius: 16, padding: '36px 28px',
-              display: 'flex', flexDirection: 'column', gap: 28,
-              animation: 'float-y 5s ease-in-out infinite',
-            }}>
-              {[
-                { val: '500+', label: 'Formulations', note: 'across 20+ categories' },
-                { val: '50+', label: 'Countries', note: 'global export reach' },
-                { val: '40+', label: 'Years', note: 'of pharmaceutical trust' },
-              ].map((s, i) => (
-                <div key={i} style={{ borderBottom: i < 2 ? '1px solid var(--border-subtle)' : 'none', paddingBottom: i < 2 ? 28 : 0 }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 40, fontWeight: 600, letterSpacing: '-0.05em', color: 'var(--text-primary)', lineHeight: 1 }}>{s.val}</div>
-                  <div style={{ fontSize: 13, color: 'var(--text-secondary)', marginTop: 4, fontWeight: 500 }}>{s.label}</div>
-                  <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2, fontWeight: 300 }}>{s.note}</div>
-                </div>
-              ))}
-            </div>
-
             {/* Scroll indicator */}
             <div style={{
               marginTop: 28, textAlign: 'center', display: 'flex',
@@ -577,10 +559,10 @@ function ManufacturingSection() {
         <div className="mfg-header" style={{ marginBottom: 80 }}>
           <div className="overline" style={{ marginBottom: 28, opacity: 0 }}>Manufacturing Excellence</div>
           <div className="section-header-split">
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 600, letterSpacing: '-0.04em', lineHeight: 1.1, opacity: 0 }}>
+            <h2 style={{ fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 600, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               World-Class<br /><span className="gradient-text-alt">Production</span>
             </h2>
-            <p style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--text-secondary)', fontWeight: 300, opacity: 0 }}>
+            <p style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--text-secondary)', fontWeight: 300 }}>
               Multiple WHO-GMP certified plants equipped with cutting-edge machinery, producing billions of units annually with unwavering quality standards.
             </p>
           </div>
@@ -655,10 +637,10 @@ function RDSection() {
         <div className="rd-header" style={{ marginBottom: 80 }}>
           <div className="overline" style={{ marginBottom: 28, opacity: 0 }}>Research & Development</div>
           <div className="rd-header-split">
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 600, letterSpacing: '-0.04em', lineHeight: 1.1, opacity: 0 }}>
+            <h2 style={{ fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 600, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               Innovation at<br /><span className="gradient-text-alt">Molecular Level</span>
             </h2>
-            <p style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--text-secondary)', fontWeight: 300, opacity: 0 }}>
+            <p style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--text-secondary)', fontWeight: 300 }}>
               Our DSIR-recognized research center drives continuous innovation in drug formulation, novel delivery systems, and process optimization.
             </p>
           </div>
@@ -715,10 +697,10 @@ function ExportsSection() {
         <div className="exp-header" style={{ marginBottom: 80 }}>
           <div className="overline" style={{ marginBottom: 28, opacity: 0 }}>Global Footprint</div>
           <div className="exp-header-split">
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 600, letterSpacing: '-0.04em', lineHeight: 1.1, opacity: 0 }}>
+            <h2 style={{ fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 600, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               Healing Lives<br /><span className="gradient-text-alt">Across Borders</span>
             </h2>
-            <p style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--text-secondary)', fontWeight: 300, opacity: 0 }}>
+            <p style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--text-secondary)', fontWeight: 300 }}>
               Our pharmaceuticals reach patients in over 50 countries, backed by international regulatory approvals and trusted partnerships.
             </p>
           </div>
